@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>数字验证</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <title>验证码验证</title>
+    <div class="container">
+      <div>
+        <span>账号:</span>
+        <input type="text" />
+      </div>
+      <div>
+        <span>密码:</span>
+        <input type="password" name="" id="" />
+      </div>
+      <div>
+        <span>请输入下方数字:</span>
+        <input id="value" type="text" />
+      </div>
+      <div class="verification">
+        <div onclick="changeNumber()">换一个</div>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <button onclick="sure()">
+        确认
+      </button>
+    </div>
+  </body>
+  <script>
+    var lists = document.querySelector("li");
+  </script>
+  <script src="./index.js"></script>
+</html>

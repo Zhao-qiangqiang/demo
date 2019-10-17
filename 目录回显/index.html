@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>滚动回显</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body style="margin:0;padding:0">
+    <div class="container">
+      <ul>
+        <li onclick="liClick(0)">衣服</li>
+        <li onclick="liClick(1)">鞋子</li>
+        <li onclick="liClick(2)">箱包</li>
+        <li onclick="liClick(3)">裤子</li>
+        <li onclick="liClick(4)">外套</li>
+        <li onclick="liClick(5)">食物</li>
+        <li onclick="liClick(6)">数码</li>
+        <li onclick="liClick(7)">冰箱</li>
+        <li onclick="liClick(8)">空调</li>
+        <li onclick="liClick(9)">洗衣机</li>
+        <li onclick="liClick(10)">手机</li>
+      </ul>
+    </div>
+  </body>
+  <script>
+    let lis = document.querySelectorAll("li");
+    let ull = document.querySelector("ul");
+    let container = document.querySelector(".container");
+
+    function liClick(index) {
+      const currentLeft = $('li').eq(index).offset().left - 200 - 1 ;
+      const indexLeft = lis[index].offsetLeft - 1 - 200;
+     for (let i = 0; i < lis.length; i++) {
+        lis[i].style.color = 'black'
+     }
+     lis[index].style.color = 'red';
+      if (currentLeft < 60 ){
+        container.scrollTo(0,0)
+      }else if (indexLeft - currentLeft < 60){
+        container.scrollTo(400,0)
+      }
+      console.log(currentLeft)
+      console.log(indexLeft)
+    }
+
+   
+  </script>
+</html>

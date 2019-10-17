@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="as">
+      复制内容
+    </div>
+  </body>
+
+  <script>
+    //   var calculated = []
+    // function climbStairs(n) {
+    //   if (n == 1 || n == 2) {
+    //     return 1;
+    //   } else if (n == 3) {
+    //     return 3;
+    //   } else {
+    //     if (!calculated[n - 1] || !calculated[n - 2]) {
+    //       calculated[n - 2] = climbStairs(n - 2);
+    //     }
+
+    //     if (!calculated[n - 3]) {
+    //       calculated[n - 3] = climbStairs(n - 3);
+    //     }
+    //     return calculated[n - 2] + calculated[n - 3];
+    //   }
+    // }
+    var calculated = []
+
+function climbStairs(n) {
+
+    if(n == 1) {
+        return 1
+    }else if (n == 2) {
+        return 2
+    }else {
+        if(!calculated[n-1]){
+            calculated[n-1] = climbStairs(n-1)
+        }
+
+        if(!calculated[n-2]){
+            calculated[n-2] = climbStairs(n-2)
+        }
+        return calculated[n-1] + calculated[n-2]
+    }
+
+}
+
+console.log(calculated instanceof Array)
+//     function climbStairs(n) {
+//   if (n == 1) return 1
+//   if (n == 2) return 1
+//   if (n == 3) return 3
+//   return climbStairs(n-2) + climbStairs(n-3)
+// }
+    // console.log(climbStairs(4))
+    // climbStairs(10)
+    // function addLink() {
+    //     var body_element = document.body;
+    //     var selection;
+    //     selection = window.getSelection();
+
+    //     var locationHref=document.location.href;
+    //     var appendLink="\r\n\r\n 原文出自[ 范文皓的个人博客 ] 转载请保留原文链接: <a href='"+locationHref+"'>"+locationHref+"</a>";
+    //     if (window.clipboardData) { // Internet Explorer
+    //         console.log('1')
+    //         var copytext = selection + appendLink;
+    //         window.clipboardData.setData ("Text", copytext);
+    //         return false;
+    //     } else {
+    //         console.log('2')
+    //         var copytext = selection + appendLink;
+    //         var newdiv = document.createElement('div');
+    //         // newdiv.style.position='absolute';
+    //         // newdiv.style.left='-99999px';
+    //         body_element.appendChild(newdiv);
+    //         newdiv.innerHTML = copytext;
+    //         selection.selectAllChildren(newdiv);
+    //         window.setTimeout(function() {
+    //         	body_element.removeChild(newdiv);
+    //         },0);
+    //     }
+    // }
+    // document.oncopy = addLink;
+    // 复制内容 原文出自[ 范文皓的个人博客 ] 转载请保留原文链接: file:///Users/zhaoqiangqiang/Desktop/saas/SaaSvs/src/index.html
+    // 复制内容 原文出自[ 范文皓的个人博客 ] 转载请保留原文链接: file:///Users/zhaoqiangqiang/Desktop/saas/SaaSvs/src/index.html
+  </script>
+</html>

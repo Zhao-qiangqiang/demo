@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="client generator" default="client" basedir=".">
+
+
+    <!--目标路径-->
+    <property name="h5DirPrefix" value="../src"/>
+    <!--模板路径-->
+    <property name="templateDir" value="template"/>
+
+    <!--自定义包名和类名-->
+    <input message="please input the package name" addproperty="p.packageName" defaultvalue="student"/>
+    <input message="please input the entity name" addproperty="p.entityName" defaultvalue="Student"/>
+
+
+
+    
+    <target name="view">
+        <copydir src="${templateDir}/sample" dest="${h5DirPrefix}/views/${p.packageName}" />
+        <rename src="${h5DirPrefix}/views/${p.packageName}/SampleCreate.vue" dest="${h5DirPrefix}/views/${p.packageName}/${p.entityName}Create.vue"/>
+        <rename src="${h5DirPrefix}/views/${p.packageName}/SampleDialog.vue" dest="${h5DirPrefix}/views/${p.packageName}/${p.entityName}Dialog.vue"/>
+        <rename src="${h5DirPrefix}/views/${p.packageName}/SampleEdit.vue" dest="${h5DirPrefix}/views/${p.packageName}/${p.entityName}Edit.vue"/>
+        <rename src="${h5DirPrefix}/views/${p.packageName}/SampleManage.vue" dest="${h5DirPrefix}/views/${p.packageName}/${p.entityName}Manage.vue"/>
+        <rename src="${h5DirPrefix}/views/${p.packageName}/SampleSearch.vue" dest="${h5DirPrefix}/views/${p.packageName}/${p.entityName}Search.vue"/>
+
+	    <replace file ="${h5DirPrefix}/views/${p.packageName}/${p.entityName}Create.vue" token="sample" value="${p.packageName}" encoding="utf-8"/>
+	    <replace file ="${h5DirPrefix}/views/${p.packageName}/${p.entityName}Create.vue" token="Sample" value="${p.entityName}"  encoding="utf-8"/>
+
+	    <replace file ="${h5DirPrefix}/views/${p.packageName}/${p.entityName}Dialog.vue" token="sample" value="${p.packageName}" encoding="utf-8"/>
+	    <replace file ="${h5DirPrefix}/views/${p.packageName}/${p.entityName}Dialog.vue" token="Sample" value="${p.entityName}"  encoding="utf-8"/>
+
+	    <replace file ="${h5DirPrefix}/views/${p.packageName}/${p.entityName}Edit.vue"   token="sample" value="${p.packageName}" encoding="utf-8"/>
+	    <replace file ="${h5DirPrefix}/views/${p.packageName}/${p.entityName}Edit.vue"   token="Sample" value="${p.entityName}"  encoding="utf-8"/>
+
+	    <replace file ="${h5DirPrefix}/views/${p.packageName}/${p.entityName}Manage.vue" token="sample" value="${p.packageName}" encoding="utf-8"/>
+	    <replace file ="${h5DirPrefix}/views/${p.packageName}/${p.entityName}Manage.vue" token="Sample" value="${p.entityName}"  encoding="utf-8"/>
+
+	    <replace file ="${h5DirPrefix}/views/${p.packageName}/${p.entityName}Search.vue" token="sample" value="${p.packageName}" encoding="utf-8"/>
+	    <replace file ="${h5DirPrefix}/views/${p.packageName}/${p.entityName}Search.vue" token="Sample" value="${p.entityName}"  encoding="utf-8"/>
+
+    </target>
+
+
+
+    <!--执行所有步骤-->
+    <target name="client" depends="view">
+    </target>
+
+</project>

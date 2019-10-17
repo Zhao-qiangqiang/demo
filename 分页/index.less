@@ -1,0 +1,52 @@
+.container{
+    margin-left: 300px;
+    table{
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 300px;
+        text-align: center;
+        tr{
+            td,th{
+                width: 90px;
+                height: 50px;
+                border: 1px solid black;
+            }
+        }
+    }
+    .pagination{
+        margin-top: 20px;
+        display: flex;
+        // width: 500px;
+        text-align: center;
+        span,li{
+            display: inline-block;
+            width:30px;
+            height: 30px;
+            border: 1px solid gray;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+        };
+        ul{
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    .currentPage{
+        color: white;
+        background-color: red
+    }
+    .otherPage{
+        border: 1px solid black;
+        color: 'black'
+    }
+    .hide{
+        display: none;
+    }
+    .show{
+        display: inline-block;
+    }
+}

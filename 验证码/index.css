@@ -1,0 +1,19 @@
+.container {
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 400px;
+  height: 300px;
+  padding-left: 100px;
+}
+.container .verification {
+  background-color: beige;
+  width: 200px;
+  height: 60px;
+  margin-top: 80px;
+}
+.container .verification ul {
+  display: flex;
+}
+.container .verification ul li {
+  list-style-type: none;
+}

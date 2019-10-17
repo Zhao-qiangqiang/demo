@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>分页</title>
+    <link rel="stylesheet" href="./index.css" />
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="list">
+        <table>
+          <tr>
+            <th>
+              <canvas id="myCanvas" width="92" height="52"></canvas>
+            </th>
+            <th>
+              名称
+            </th>
+            <th>
+              价格
+            </th>
+          </tr>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+      <div class="pagination">
+        <select onchange="pageSizeChange(value)">
+          <option value="1">每页1条</option>
+          <option value="2">每页2条</option>
+          <option value="4">每页4条</option>
+          <option value="5">每页5条</option>
+          <option value="10">每页10条</option>
+        </select>
+        <span class="prev" onclick="prevPage()">《 </span>
+        <span class="next" onclick="nextPage()"> 》</span>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    let dataSource = [
+      { name: "商品1", price: "10" },
+      { name: "商品2", price: "20" },
+      { name: "商品3", price: "30" },
+      { name: "商品4", price: "40" },
+      { name: "商品5", price: "50" },
+      { name: "商品6", price: "60" },
+      { name: "商品1", price: "10" },
+      { name: "商品2", price: "20" },
+      { name: "商品3", price: "30" },
+      { name: "商品4", price: "40" },
+      { name: "商品5", price: "50" },
+      { name: "商品6", price: "60" },
+      { name: "商品1", price: "10" },
+      { name: "商品2", price: "20" },
+      { name: "商品3", price: "30" },
+      { name: "商品4", price: "40" },
+      { name: "商品5", price: "50" },
+      { name: "商品6", price: "60" },
+      { name: "商品1", price: "10" },
+      { name: "商品2", price: "20" },
+      { name: "商品3", price: "30" },
+      { name: "商品4", price: "40" },
+      { name: "商品5", price: "50" },
+      { name: "商品6", price: "60" },
+      { name: "商品1", price: "10" },
+      { name: "商品2", price: "20" },
+      { name: "商品3", price: "30" },
+      { name: "商品4", price: "40" },
+      { name: "商品5", price: "50" },
+      { name: "商品6", price: "60" }
+    ];
+    let totalNumber = dataSource.length;
+    let page = 1;
+    let pageSize = 4;
+    let pages = Math.ceil(totalNumber / pageSize);
+
+    var myCanvas = document.querySelector("#myCanvas");
+    var table = document.querySelector("table");
+    var paging = document.querySelector(".pagination");
+    var tbody = document.getElementById("tbody");
+    var select = document.querySelector("select");
+
+    select.value = pageSize;
+
+    function pagination() {
+      if (paging.childElementCount == 4) {
+        paging.removeChild(paging.children[2]);
+      }
+      let sonDomUl = document.createElement("ul");
+      if (pages >= 7) {
+        for (let index = 1; index < pages + 1; index++) {
+          if (
+            index == 1 ||
+            index == 2 ||
+            index == Math.ceil(pages / 2) ||
+            index == pages
+          ) {
+            let sonDomli = document.createElement("li");
+            let sonDomText = document.createTextNode(index);
+
+            sonDomli.appendChild(sonDomText);
+            sonDomli.classList.add(index == 1 ? "currentPage" : "otherPage");
+            sonDomUl.appendChild(sonDomli);
+            sonDomli.addEventListener("click", function changePage() {
+              clickPage(index);
+            });
+          }
+        }
+
+        let omitDomOneli = document.createElement("li");
+        let sonDomOneText = document.createTextNode("...");
+        omitDomOneli.appendChild(sonDomOneText);
+        sonDomUl.insertBefore(omitDomOneli,sonDomUl.children[2]);
+        omitDomOneli.addEventListener("click", function changePage() {
+          clickOmitPage();
+        });
+        let omitDomTwoli = document.createElement("li");
+        let sonDomTwoText = document.createTextNode("...");
+        omitDomTwoli.appendChild(sonDomTwoText);
+        sonDomUl.insertBefore(omitDomTwoli,sonDomUl.children[4]);
+        omitDomTwoli.addEventListener("click", function changePage() {
+          clickOmitPage();
+        });
+        // if ( index < 4){
+        //   let sonDomli = document.createElement("li");
+        //   let textNode = '';
+        //   if (index == 1 || index == 2){
+        //     textNode = index
+        //   }else{
+        //     textNode = '...'
+        //   }
+        //   let sonDomText = document.createTextNode(textNode);
+
+        //   sonDomli.appendChild(sonDomText);
+        //   sonDomli.classList.add(index == 1 ? "currentPage" : "otherPage");
+        //   sonDomUl.appendChild(sonDomli);
+        //   sonDomli.addEventListener("click", function changePage() {
+        //     clickPage(index);
+        //   });
+        // };
+        // if (index == Math.ceil(pages / 2) || index == pages){
+        //   let sonDomli = document.createElement("li");
+        //   let sonDomText = document.createTextNode(index);
+
+        //   sonDomli.appendChild(sonDomText);
+        //   sonDomli.classList.add(index == 1 ? "currentPage" : "otherPage");
+        //   sonDomUl.appendChild(sonDomli);
+        //   sonDomli.addEventListener("click", function changePage() {
+        //     clickPage(index);
+        //   });
+        // }
+        // if( Math.ceil(pages / 2) < index && index < 6){
+        //   let sonDomli = document.createElement("li");
+        //   let sonDomText = document.createTextNode('...');
+
+        //   sonDomli.appendChild(sonDomText);
+        //   sonDomli.classList.add(index == 1 ? "currentPage" : "otherPage");
+        //   sonDomUl.appendChild(sonDomli);
+        //   sonDomli.addEventListener("click", function changePage() {
+        //     clickPage(index);
+        //   });
+        // }
+      } else {
+        for (let index = 1; index < pages + 1; index++) {
+          let sonDomli = document.createElement("li");
+          let sonDomText = document.createTextNode(index);
+
+          sonDomli.classList.add(index == 1 ? "currentPage" : "otherPage");
+          sonDomli.appendChild(sonDomText);
+          sonDomUl.appendChild(sonDomli);
+          sonDomli.addEventListener("click", function changePage() {
+            clickPage(index);
+          });
+        }
+      }
+      paging.insertBefore(sonDomUl, paging.children[2]);
+    }
+    pagination();
+
+    function clickPage(pages) {
+      console.log(pages);
+      let lis = document.querySelectorAll("li");
+      page = pages;
+      for (let index = 0; index < lis.length; index++) {
+        if (index == pages - 1) {
+          lis[index].classList.add("currentPage");
+        } else {
+          lis[index].classList.remove("currentPage");
+        }
+      }
+      iniate((pages - 1) * pageSize, pages);
+    }
+    function changePages(change) {
+      let lis = document.querySelectorAll("li");
+      page = change == "next" ? page + 1 : page - 1;
+      iniate((page - 1) * pageSize, page);
+      for (let index = 0; index < pages; index++) {
+        lis[index].classList.remove("currentPage");
+        index == page - 1
+          ? lis[index].classList.add("currentPage")
+          : lis[index].classList.add("otherPage");
+      }
+    }
+
+    // 初始化表格内容
+    function iniate(start, pages) {
+      tbody.innerHTML = "";
+      for (let index = start; index < pages * pageSize; index++) {
+        let sonDomTr = document.createElement("tr");
+
+        // 每一行
+        for (let i = 0; i < 3; i++) {
+          let sonDomTd = document.createElement("td");
+          let str = "";
+          // debugger;
+          switch (i) {
+            case 0:
+              str = index + 1;
+              break;
+            case 1:
+              str = dataSource[index].name;
+              break;
+            case 2:
+              str = dataSource[index].price;
+              break;
+            default:
+              break;
+          }
+          let sonDomText = document.createTextNode(str);
+          sonDomTd.appendChild(sonDomText);
+          sonDomTr.appendChild(sonDomTd);
+        }
+        tbody.innerHTML += sonDomTr.innerHTML;
+      }
+    }
+    iniate(0, 1);
+
+    function prevPage() {
+      if (page == 1) {
+        return false;
+      } else {
+        changePages("prev");
+      }
+    }
+    function nextPage() {
+      if (page == pages) {
+        return false;
+      } else {
+        changePages("next");
+      }
+    }
+    function pageSizeChange(value) {
+      page = 1;
+      pageSize = Number(value);
+      pages = Math.ceil(totalNumber / pageSize);
+      iniate(0, 1);
+      pagination();
+      // changePages()
+    }
+
+    // 画对斜线
+    (function toSlash() {
+      let slash = myCanvas.getContext("2d");
+      slash.beginPath();
+      slash.moveTo(0, 0);
+      slash.lineTo(94, 54);
+      slash.stroke();
+      slash.font = "16px Arial";
+      slash.fillText("序号", 10, 40);
+      slash.fillText("商品", 45, 15);
+    })();
+  </script>
+</html>

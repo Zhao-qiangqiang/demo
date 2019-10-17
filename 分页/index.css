@@ -1,0 +1,50 @@
+.container {
+  margin-left: 300px;
+}
+.container table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 300px;
+  text-align: center;
+}
+.container table tr td,
+.container table tr th {
+  width: 90px;
+  height: 50px;
+  border: 1px solid black;
+}
+.container .pagination {
+  margin-top: 20px;
+  display: flex;
+  text-align: center;
+}
+.container .pagination span,
+.container .pagination li {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 1px solid gray;
+  text-align: center;
+  line-height: 30px;
+  cursor: pointer;
+}
+.container .pagination ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+.container .currentPage {
+  color: white;
+  background-color: red;
+}
+.container .otherPage {
+  border: 1px solid black;
+  color: 'black';
+}
+.container .hide {
+  display: none;
+}
+.container .show {
+  display: inline-block;
+}

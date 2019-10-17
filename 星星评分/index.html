@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>星星评分</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <ul>
+        <li onclick="clickImg(1)">
+          <img data-ison="false" src="./image/starOff.png" alt="" srcset="" />
+        </li>
+        <li onclick="clickImg(2)">
+          <img data-ison="false" src="./image/starOff.png" alt="" srcset="" />
+        </li>
+        <li onclick="clickImg(3)">
+          <img data-ison="false" src="./image/starOff.png" alt="" srcset="" />
+        </li>
+        <li onclick="clickImg(4)">
+          <img data-ison="false" src="./image/starOff.png" alt="" srcset="" />
+        </li>
+        <li onclick="clickImg(5)">
+          <img data-ison="false" src="./image/starOff.png" alt="" srcset="" />
+        </li>
+      </ul>
+      <p></p>
+    </div>
+  </body>
+
+  <script>
+    let lis = document.querySelectorAll("li img");
+    let imgOn = "./image/starOn.png";
+    let imgOff = "./image/starOff.png";
+    function clickImg(value) {
+      let num = value - 1;
+      if (lis[num].dataset.ison === "false") {
+        changeImgOn(value);
+      } else {
+        changeImgOff(value);
+      }
+    }
+    function changeImgOn(value) {
+      for (let i = 0; i < 5; i++) {
+        if (i < value) {
+          lis[i].dataset.ison = "true";
+          lis[i].src = imgOn;
+        } else {
+          lis[i].dataset.ison = "false";
+          lis[i].src = imgOff;
+        }
+      }
+    }
+    function changeImgOff(value) {
+      let num = value - 1;
+      let it = null;
+      // 此判断是为了判断 当前点击的星星是否被选中
+      if (value == 5 || lis[value].dataset.ison == "true") {
+        it = value;
+      } else {
+        it = num;
+      }
+      // 当是五星好评时  就只需要改变第五个图片的星星状态
+      if (value == 5){
+        lis[num].src = imgOff;
+        lis[num].dataset.ison = "false";
+      }else{
+          for (let i = 0; i < 5; i++) {
+            if (i < it) {
+              lis[i].dataset.ison = "true";
+              lis[i].src = imgOn;
+            } else {
+              lis[i].dataset.ison = "false";
+              lis[i].src = imgOff;
+            }
+          }
+      }
+    }
+  </script>
+</html>

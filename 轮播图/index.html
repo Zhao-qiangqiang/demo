@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>轮播图</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="pics" >
+        <ul>
+          <li class="hide">
+            <img src="./staic/a.jpeg" alt="轮播图a" srcset="" />
+          </li>
+          <li>
+            <img src="./staic/b.jpeg" alt="轮播图b" srcset="" />
+          </li>
+          <li>
+            <img src="./staic/c.jpg" alt="轮播图c" srcset="" />
+          </li>
+          <li>
+            <img src="./staic/d.jpeg" alt="轮播图d" srcset="" />
+          </li>
+        </ul>
+      </div>
+      <div class="dots">
+        <ul>
+          <li class="bacolor" onclick="dotClick(0)"></li>
+          <li onclick="dotClick(1)"></li>
+          <li onclick="dotClick(2)"></li>
+          <li onclick="dotClick(3)"></li>
+        </ul>
+      </div>
+      <div class="arrow">
+          <ul>
+              <li onclick="arrowClick('left')">
+                  上一个
+              </li>
+              <li onclick="arrowClick('right')">
+                  下一个
+              </li>
+          </ul>
+      </div>
+    </div>
+  </body>
+  <script src="./index.js"></script>
+  <script>
+    let index = 0;
+    let current = document.querySelectorAll(".pics li");
+    let dot = document.querySelectorAll(".dots li");
+  </script>
+</html>

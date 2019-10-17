@@ -1,0 +1,8 @@
+cd 到本目录
+
+ant: 
+默认运行 build.xml 	    【生成代码】
+ant -f clean.xml	    【清除代码】
+
+
+
